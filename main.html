@@ -8,10 +8,7 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      margin: 50px;
-    }
-
-    #timer {
+      margin: 100px;
       font-size: 24px;
     }
   </style>
@@ -22,22 +19,25 @@
   <script>
     function updateTimer() {
       const timerElement = document.getElementById('timer');
-      const now = new Date();
+      const currentDate = new Date();
 
-      const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-      const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+      const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+      };
 
-      const dateString = now.toLocaleDateString('en-US', dateOptions);
-      const timeString = now.toLocaleTimeString('en-US', timeOptions);
-
-      timerElement.textContent = `${dateString}, ${timeString}`;
+      const formattedDate = currentDate.toLocaleString('en-US', options);
+      timerElement.textContent = formattedDate;
     }
 
-    // Initial call to set the initial time
-    updateTimer();
-
-    // Update the timer every second
     setInterval(updateTimer, 1000);
+    updateTimer(); // Call the function once to display the initial time
+
   </script>
 </body>
 </html>
